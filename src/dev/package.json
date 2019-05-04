@@ -1,0 +1,11 @@
+{
+  "name": "webpack-nwjs",
+  "version": "0.0.1",
+  "description": "Template for NW.js, Webpack and TypeScript",
+  "main": "http://localhost:4000",
+  "window": {
+    "width": 1024,
+    "height": 768,
+    "icon": "./assets/icon.png"
+  }
+}

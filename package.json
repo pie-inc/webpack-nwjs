@@ -1,0 +1,90 @@
+{
+  "name": "webpack-nwjs",
+  "version": "0.0.1",
+  "description": "Template for NW.js, Webpack and TypeScript",
+  "main": "docs/index.html",
+  "scripts": {
+    "start": "npm run dev:watch",
+    "build": "npm run build:icons && npm run build:docs",
+    "dev:watch": "webpack-dev-server --mode development --hot --inline",
+    "nw": "nw .",
+    "build:docs": "webpack --mode production",
+    "build:icons": "electron-icon-builder --input=./src/assets/icon.png --output=./src/assets/",
+    "build:nw:mac": "build --tasks mac-x64 --concurrent --mirror https://dl.nwjs.io/ .",
+    "build:nw:linux": "build --tasks linux-x86,linux-x64 --concurrent --mirror https://dl.nwjs.io/ .",
+    "build:nw:win": "build --tasks win-x86,win-x64 --concurrent --mirror https://dl.nwjs.io/ .",
+    "build:nw:all": "build --tasks win-x86,win-x64,linux-x86,linux-x64,mac-x64 --concurrent --mirror https://dl.nwjs.io/ ."
+  },
+  "window": {
+    "width": 1024,
+    "height": 768,
+    "icon": "./src/assets/icon.png"
+  },
+  "build": {
+    "appId": "eu.jlopes.test",
+    "nwVersion": "0.14.7",
+    "packed": true,
+    "targets": [
+      "zip",
+      "nsis7z"
+    ],
+    "strippedProperties": [
+      "build",
+      "devDependencies",
+      "scripts"
+    ],
+    "outputPattern": "${NAME} ${VERSION} ${PLATFORM} ${ARCH}",
+    "excludes": [
+      "node_modules/**/*",
+      "dev/**/*",
+      "dist/**/*",
+      "src/**/*",
+      "package-lock.json",
+      "readme.md",
+      "tsconfig.json",
+      "webpack.config.js"
+    ],
+    "win": {
+      "productName": "Project",
+      "companyName": "nwjs-builder-phoenix",
+      "copyright": "copyright",
+      "icon": "./src/assets/icons/win/icon.ico"
+    },
+    "mac": {
+      "displayName": "Project",
+      "copyright": "copyright",
+      "icon": "./src/assets/icons/mac/icon.icns",
+      "plistStrings": {
+        "CFBundleIdentifier": "eu.jlopes.test.modified",
+        "CFBundleDocumentTypes": []
+      }
+    }
+  },
+  "keywords": [
+    "nwjs",
+    "webpack",
+    "typescript",
+    "node-webkit"
+  ],
+  "author": "J Lopes <mail@jlopes.eu> (https://jlopes.eu/)",
+  "license": "ISC",
+  "devDependencies": {
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.6.0",
+    "css-loader": "^2.1.1",
+    "electron-icon-builder": "^1.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "imports-loader": "^0.8.0",
+    "nw": "^0.37.3-sdk",
+    "nwjs-builder-phoenix": "^1.15.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "style-loader": "^0.20.3",
+    "terser-webpack-plugin": "^1.2.3",
+    "ts-loader": "^4.5.0",
+    "typescript": "^2.9.2",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.3.1",
+    "webpackbar": "^3.2.0"
+  }
+}
